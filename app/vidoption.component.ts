@@ -6,10 +6,7 @@ import {MessageService} from './message.service';
 @Component({
 	selector: 'vidoption',
 	templateUrl: 'app/vidoption.component.html'
-	//inputs: ['onSelect']
 })
 
 export class OptionComponent  {
-
-	//onSelect: Function;
 }
