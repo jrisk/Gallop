@@ -1,0 +1,11 @@
+<div class="styleDiv">
+<button type="button" (click)="stylePick()">
+		<img class="emoji" draggable="false" 
+		alt="🎨" src="https://twemoji.maxcdn.com/2/72x72/1f3a8.png">
+	</button>
+<div *ngIf="stylePress" id="styleStuff">
+	<button type="button" *ngFor="let style of styles" #stylevar
+	value="{{style}}"
+	(click)="changeColor(stylevar.value)">{{style}}</button>
+</div>
+</div>

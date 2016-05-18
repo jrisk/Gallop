@@ -1,0 +1,213 @@
+/* Master Styles */
+h1 {
+  color: #369; 
+  font-family: Arial, Helvetica, sans-serif;   
+  font-size: 250%;
+}
+h2, h3 { 
+  color: #444;
+  font-family: Arial, Helvetica, sans-serif;   
+  font-weight: lighter;
+}
+body { 
+  margin: 2em; 
+}
+body, input[text], button { 
+  color: #888; 
+  font-family: Cambria, Georgia; 
+}
+
+li {
+  list-style: none;
+}
+
+#horselogo {
+  position: absolute;
+  animation: gallop 3s ease-out;
+}
+
+.toplogo {
+  text-align: center;
+  margin-top: 0;
+  font-size: 2em;
+  font-family: 'Faster One', cursive;
+  animation: showlogo 3s;
+}
+
+@keyframes showlogo {
+  from {
+    visibility: hidden;
+    opacity: 0;
+  }
+  to {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+/*chat container scroll and fixed position */
+
+.subcontainer {
+  position: relative;
+	overflow-y: scroll;
+  height: 65%;
+}
+
+#messages {
+}
+/*chat message viewer */
+
+.msg {
+	position: relative;
+	word-wrap: break-word;
+}
+
+iframe {
+  position: absolute;
+}
+
+.msgbox {
+  position: relative;
+  height: 50%;
+  overflow: hidden;
+  word-wrap: no-wrap;
+}
+
+.msgtest {
+  word-wrap: no-wrap;
+}
+
+.topbox {
+  position: relative;
+}
+
+#loader {
+  text-align: center;
+  position: absolute;
+  top: 30%;
+  left: 40%;
+}
+
+.shadowmsg {
+  visibility: hidden;
+  position: absolute;
+  font-size: 30px;
+  color: white;
+  white-space: nowrap;
+  animation: rtol 4s;
+}
+
+.beezmsg {
+  animation: rtol 4s cubic-bezier(0,1,1,0);
+}
+
+.fastmsg {
+  animation: rtol 2s ease-in;
+}
+
+.slowmsg {
+  animation: rtol 6s ease-out;
+}
+
+.redmsg {
+  color: red;
+}
+
+.bluemsg {
+  color: blue;
+}
+
+.greenmsg {
+  color: green;
+}
+
+/* animate scroll the chat message */
+
+@keyframes rtol {
+  from {
+    display: inline;
+    visibility: visible;
+    z-index: 1000;
+    margin-left: 120%;
+  }
+  to {
+    margin-left: -20%;
+  }
+}
+
+@keyframes gallop {
+  from {
+    display: inline;
+    margin-left: 100%;
+  }
+  to {
+    margin-left: 0%;
+  }
+}
+
+.styleDiv {
+  z-index: 1001;
+}
+
+#styleStuff {
+}
+
+.videowrap {
+  position: relative;
+  width: 75%;
+  height: 75%;
+}
+.chatwrap {
+  position: absolute;
+  width: 25%;
+  top: 25%;
+  bottom: 0;
+  right: 0;
+}
+
+/* button image */
+.vidbutton {
+  width: 20%;
+  height: 20%;
+}
+
+/*twitch css */
+.twitchWrapper {
+  position: relative;
+}
+
+.twitchStream {
+  position: relative;
+  width:75%;
+}
+
+.twitchStream:before{
+  content: "";
+  display: block;
+  padding-top: 56.25%; /* 16:9 */
+}
+
+.twitchChat{
+  position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+  width: 25%;
+}
+
+.twitchStream iframe, .twitchChat iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 1024px) {
+  .videowrap{
+    width:100%;
+  }
+  .chatwrap {
+    position: relative;
+    width: 100%;
+  }
+}

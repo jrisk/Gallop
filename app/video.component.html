@@ -1,0 +1,34 @@
+<vidoption (click)="onSelect($event.target.value)"></vidoption>
+<div class="videowrap">
+<div *ngIf="youtube">
+	<iframe width="100%" height="100%" src="{{video.youtube.url}}"
+	allowfullscreen frameborder="0" autoplay>
+	This iframe isn't loading for some reason
+	</iframe>
+</div>
+<div *ngIf="twitch">
+	<iframe width="100%" height="100%" src="{{video.twitch.url}}"
+	allowfullscreen frameborder="0" autoplay>
+	This iframe isn't loading for some reason
+	</iframe>
+</div>
+<div *ngIf="hitbox">
+	<iframe width="100%" height="100%" src="{{video.hitbox.url}}"
+	allowfullscreen frameborder="0" autoplay>
+	This iframe isn't loading for some reason
+	</iframe>
+</div>
+<div [hidden]="start" class="msgbox">
+	<div class="msgtest" #videomessage>
+	<div class="shadowmsg" *ngFor="let message of vidmsg"
+	[innerHTML]="message.msg"
+	[style.color]="colorPick"
+	[style.animation]="animationPick"></div>
+	<div class="shadowmsg">Lane 2</div>
+	<div class="shadowmsg">Lane 3</div>
+	<div class="shadowmsg">Lane 4</div>
+	<div class="shadowmsg">Lane 5</div>
+	</div>
+</div>
+</div>
+<my-style (colorType)="colorChange($event)"></my-style>

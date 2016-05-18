@@ -1,0 +1,16 @@
+<div class="chat-container">
+<div class="chatwrap">
+	<div #scrollMe class="subcontainer">
+		<ul id="messages" #msglist>
+			<li *ngFor="let message of messages; 
+			let what=index" class="msg" 
+			[innerHTML]="message.msg">
+			</li>
+		</ul>
+	</div>
+	<form #f="ngForm" (ngSubmit)="onPost(f.value)">
+		<input type="text" ngControl="message" #inputvar class="form-control">
+		<button type="submit">Send</button>
+	</form>
+</div>
+</div>
