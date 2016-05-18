@@ -2,8 +2,9 @@
   "name": "angular2-quickstart",
   "version": "1.0.0",
   "scripts": {
-    "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
+    "start": "node server.js && concurrently \"tsc\" \"npm run tsc:w\" ",
     "lite": "lite-server",
+    "server": "server.js",
     "postinstall": "typings install",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
