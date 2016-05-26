@@ -6,7 +6,11 @@
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
     <link href='https://fonts.googleapis.com/css?family=Faster+One' rel='stylesheet' type='text/css'>
+    
+
     <!-- 1. Load libraries -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady" async defer></script>
     <!-- IE required polyfill -->
     <script src="node_modules/es6-shim/es6-shim.min.js"></script>
     <script src="node_modules/zone.js/dist/zone.js"></script>
@@ -24,7 +28,146 @@
     <span><img draggable="false" id="horselogo" class="emoji" alt="🐎" src="https://twemoji.maxcdn.com/2/72x72/1f40e.png"></span>
     <div class="toplogo">Gallop</div>
     </div>
+    <div id="output">
+    <input id="query" type="text" placeholder="search youtube">
+    <div id="output2">stuffhere</div>
+    </div>
+    <button type="button" id="search-button">Search</button>
+    <div id="search-container">Returned Searches</div>
     <hr>
+    <div id="login-link">Login</div>
     <my-app><img src="./app/loader.gif" id="loader" alt="loading"></my-app>
   </body>
+<script>
+// The client ID is obtained from the Google Developers Console
+// at https://console.developers.google.com/.
+// If you run this code from a server other than http://localhost,
+// you need to register your own client ID.
+var OAUTH2_CLIENT_ID = '625276175581-u7l1fihn3t6t585aoouf4romtv9ri3ka.apps.googleusercontent.com';
+var OAUTH2_SCOPES = [
+  'https://www.googleapis.com/auth/youtube'
+];
+
+var apiKey = 'AIzaSyAzxMl8QvWvKaprNKOnPQlquSeeYhh1gTE';
+
+// Upon loading, the Google APIs JS client automatically invokes this callback.
+googleApiClientReady = function() {
+  console.log('google API Client ready callback ran');
+  gapi.auth.init(function() {
+    gapi.client.setApiKey(apiKey);
+    window.setTimeout(checkAuth, 1);
+  });
+}
+
+// Attempt the immediate OAuth 2.0 client flow as soon as the page loads.
+// If the currently logged-in Google Account has previously authorized
+// the client specified as the OAUTH2_CLIENT_ID, then the authorization
+// succeeds with no user intervention. Otherwise, it fails and the
+// user interface that prompts for authorization needs to display.
+function checkAuth() {
+  console.log('checkAuth entered');
+  gapi.auth.authorize({
+    client_id: OAUTH2_CLIENT_ID,
+    scope: OAUTH2_SCOPES,
+    immediate: true
+  }, handleAuthResult);
+}
+
+// Handle the result of a gapi.auth.authorize() call.
+function handleAuthResult(authResult) {
+  console.log('handleAuthREsult entered');
+  console.log(authResult);
+  if (authResult && !authResult.error) {
+    // Authorization was successful. Hide authorization prompts and show
+    // content that should be visible after authorization succeeds.
+    $('.pre-auth').hide();
+    $('.post-auth').show();
+    loadAPIClientInterfaces();
+  } else {
+    // Make the #login-link clickable. Attempt a non-immediate OAuth 2.0
+    // client flow. The current function is called when that flow completes.
+    $('#login-link').click(function() {
+      gapi.auth.authorize({
+        client_id: OAUTH2_CLIENT_ID,
+        scope: OAUTH2_SCOPES,
+        immediate: false
+        }, handleAuthResult);
+    });
+  }
+}
+
+// Load the client interfaces for the YouTube Analytics and Data APIs, which
+// are required to use the Google APIs JS client. More info is available at
+// http://code.google.com/p/google-api-javascript-client/wiki/GettingStarted#Loading_the_Client
+function loadAPIClientInterfaces() {
+  console.log('load API interface loaded');
+  gapi.client.load('youtube', 'v3', function() {
+    handleAPILoaded();
+  });
+}
+
+function handleAPILoaded() {
+
+  flag = 0;
+
+  console.log('handleAPI is loaded');
+
+  //this is 2-waybinding
+  $('input').bind('input propertychange', function() {
+    if ($(this).val().length > 2 && $(this).is(':focus')) {
+      searchComplete();
+    }
+  });
+
+function searchComplete() {
+  console.log('search autocomplete');
+
+  var querySuggest = $('#query').val();
+
+  $.ajax({
+  method: 'GET',
+  url: 'http://suggestqueries.google.com/complete/search?client=youtube&ds=yt&client=firefox&q=' + querySuggest + '&key=' + apiKey + '&callback=?',
+  dataType: 'jsonp',
+  success: function(data) {
+    console.log(data);
+    data[1].map(function(item) {
+      console.log(item);
+    });
+    $('#output2').html(data);
+
+  },
+  error: function(err) {
+    console.log(err);
+  }
+  });
+
+}
+
+  // Search for a specified string.
+function search() {
+  flag = 1;
+  console.log('search button clicked and search method ran');
+  var q = $('#query').val();
+  var request = gapi.client.youtube.search.list({
+    q: q,
+    part: 'snippet',
+    key: 'AIzaSyAzxMl8QvWvKaprNKOnPQlquSeeYhh1gTE'
+  });
+
+  request.execute(function(response) {
+    var str = JSON.stringify(response.result);
+    $('#search-container').html('<pre>' + str + '</pre>');
+  });
+}
+
+$('#search-button').on('click', function(e) {
+  console.log('why no search');
+  search();
+});
+
+} //end handleAPIloadedS
+</script>
+
+//carl bot that pushes replies to test lanes on video where
+//text is superimposed or put if multiple texts at same time
 </html>

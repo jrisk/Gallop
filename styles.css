@@ -211,3 +211,14 @@ iframe {
     width: 100%;
   }
 }
+
+#output {
+  position: absolute;
+  max-height: 100px;
+  width: 50px;
+}
+
+#output2 {
+  position: relative;
+  width: 100%;
+}

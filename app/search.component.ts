@@ -2,7 +2,7 @@ import {Component, Output,EventEmitter} from '@angular/core';
 
 @Component({
 	selector: 'search',
-	template: `<input type='text'>`
+	templateUrl: 'search.component.html'
 })
 
 export class SearchComponent {
