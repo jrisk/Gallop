@@ -5,12 +5,14 @@ import {MessageService} from './message.service';
 import {OptionComponent} from './vidoption.component';
 import { ChatComponent } from './chat.component';
 import { VideoComponent } from './video.component';
+import {SearchComponent} from './search.component';
 
 @Component({
 	selector: 'my-app',
-	template: `<vid></vid>
+	template: `<search></search>
+	<vid></vid>
 		<mychat></mychat>`,
-	directives: [ChatComponent, VideoComponent],
+	directives: [ChatComponent, VideoComponent, SearchComponent],
   providers: [MessageService]
 })
 		@Routes([
