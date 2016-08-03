@@ -111,6 +111,7 @@ function handleAPILoaded() {
   //this is 2-waybinding
   $('input').bind('input propertychange', function() {
     if ($(this).val().length > 2 && $(this).is(':focus')) {
+      console.log('run autocomplete');
       searchComplete();
     }
   });
