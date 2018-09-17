@@ -3,21 +3,21 @@
     <base href="/">
     <title>Angular 2 QuickStart JS</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styles.css">
-    <link href='https://fonts.googleapis.com/css?family=Faster+One' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="gallop/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="gallop/styles.css">
+    <link href="https://fonts.googleapis.com/css?family=Faster+One" rel="stylesheet" type="text/css">
     
 
     <!-- 1. Load libraries -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
     <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady" async defer></script>
     <!-- IE required polyfill -->
-    <script src="node_modules/es6-shim/es6-shim.min.js"></script>
-    <script src="node_modules/zone.js/dist/zone.js"></script>
-    <script src="node_modules/reflect-metadata/Reflect.js"></script>
-    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="gallop/node_modules/es6-shim/es6-shim.min.js"></script>
+    <script src="gallop/node_modules/zone.js/dist/zone.js"></script>
+    <script src="gallop/node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="gallop/node_modules/systemjs/dist/system.src.js"></script>
     <!-- 2. Load our 'modules' -->
-    <script src="systemjs.config.js"></script>
+    <script src="gallop/systemjs.config.js"></script>
         <script>
           System.import('app').catch(function(err){ console.error(err);  });
           </script>
@@ -32,7 +32,7 @@
     <div id="search-container">Returned Searches</div>
     <hr>
     <div id="login-link">Login</div>
-    <my-app><img src="./app/loader.gif" id="loader" alt="loading"></my-app>
+    <my-app><img src="gallop/app/loader.gif" id="loader" alt="loading"></my-app>
   </body>
 <script>
 // The client ID is obtained from the Google Developers Console
